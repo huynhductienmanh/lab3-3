@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.pyc
+
+# React
+frontend/node_modules/
+frontend/build/
+frontend/dist/
+
+# Database
+*.db
+*.sqlite3
