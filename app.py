@@ -12,11 +12,11 @@ def index():
 
 @app.route("/employees/add")
 def employees_add_page():
-    return render_template("employyees_add.html")
+    return render_template("employees_add.html")
 
 @app.route("/employees/<int:emp_id>")
-def employee_edit_page(em_id):
-    return render_template("employee_edit.html",em_id=em_id)
+def employee_edit_page(emp_id):
+    return render_template("employee_edit.html",emp_id=emp_id)
 
 if __name__ == "__main__":
     app.run(debug=True)

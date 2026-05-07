@@ -1,10 +1,10 @@
-import { use, useEffect,useState } from "react";
+import { useEffect,useState } from "react";
 import { useNavigate,useParams } from "react-router-dom";
 export default function EmployeeEdit(){
     const nav = useNavigate();
     const { id } = useParams();
     const [form,setForm]= useState({
-        Fullname:"",
+        FullName: "",
         DateOfBirth:"",
         Gender:"",
         PhoneNumber:"",
@@ -15,11 +15,11 @@ export default function EmployeeEdit(){
         Status:"",
     });
 
-    const [department,setDepartments]=useState([]);
-    const [position,setPositions]=useState([]);
+    const [departments,setDepartments]=useState([]);
+    const [positions,setPositions]=useState([]);
     const handleChange = (e) =>{
         setForm({
-            ...Form,
+            ...form,
             [e.target.id]:e.target.value,
         });
     };
@@ -46,7 +46,7 @@ export default function EmployeeEdit(){
     };
 
     const loadEmployee = () => {
-        fetch('http://localhost:500/api/employees/${id}')
+        fetch(`http://localhost:5000/api/employees/${id}`)
         .then((res)=>res.json())
         .then((data)=>{
             setForm({
@@ -66,7 +66,7 @@ export default function EmployeeEdit(){
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:5000/apo/employees/${id}',{
+        fetch(`http://localhost:5000/api/employees/${id}`,{
             method: "PUT",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(form),
@@ -95,7 +95,7 @@ export default function EmployeeEdit(){
                 <label>Full Name</label>
                 <input
                     id="FullName"
-                    className="form-control mb2"
+                    className="form-control mb-2"
                     value={form.FullName}
                     onChange={handleChange}
                     required
@@ -137,7 +137,7 @@ export default function EmployeeEdit(){
                 <label>Email</label>
                 <input
                     id="Email"
-                    className="form-control mb2"
+                    className="form-control mb-2"
                     value={form.Email}
                     onChange={handleChange}
                     required
@@ -147,8 +147,8 @@ export default function EmployeeEdit(){
                 <input
                     type="date"
                     id="HireDate"
-                    className="form-control mb2"
-                    value={form.Hire}
+                    className="form-control mb-2"
+                    value={form.HireDate}
                     onChange={handleChange}
                     required
                 />
@@ -196,7 +196,7 @@ export default function EmployeeEdit(){
                 >
                 <option value="Active">Active</option>
                 <option value="Inactive">Inactive</option>
-                <option value="Dang lam viec ">Dang lam viec</option>
+                <option value="Dang lam viec">Dang lam viec</option>
                 </select>
 
                 <button className="btn btn-primary mt-2">

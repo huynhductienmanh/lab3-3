@@ -4,12 +4,11 @@ import mysql.connector
 def get_sqlsever_connection():
     try:
         conn = pyodbc.connect(
-            "DRIVER={ODBC Driver 17 for SQL Sever};"
-            "SERVER=localhost"
-            "DATABASE=HUMAN"
-            "UID=sa"
-            "PWD=1233456;",
-            timeout=5
+            "DRIVER={ODBC Driver 17 for SQL Server};"
+            "SERVER=localhost\\MSSQLSERVER01;"
+            "DATABASE=HUMAN_2025;"
+            "Trusted_Connection=yes;",
+            timeout=5   
         )
         return conn
     except Exception as e:
@@ -20,8 +19,9 @@ def get_mysql_connection():
     try:
         conn = mysql.connector.connect(
             host = "localhost",
+            port=3307,
             user="root",
-            password="1233456",
+            password="123456",
             database="payroll_2026",
             autocommit=False
         )

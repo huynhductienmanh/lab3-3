@@ -1,7 +1,7 @@
 import { useEffect,useState } from "react";
 import { data, useNavigate } from "react-router-dom";
 export default function EmployeeAdd(){
-    const nav = useEffect();
+    const nav = useNavigate();
     const [form, setForm] = useState({
         FullName:"",
         DateOfBirth:"",
@@ -9,41 +9,41 @@ export default function EmployeeAdd(){
         PhoneNumber:"",
         Email:"",
         HireDate:"",
-        Department:"",
+        DepartmentID:"",
         PositionID:"",
         Status:"Active",
     });
 
-    const [department,setDepartment] = useState([]);
-    const [position, setPosition] = useState([]);
+    const [departments,setDepartments] = useState([]);
+    const [positions, setPositions] = useState([]);
     const handleChange = (e) =>{
         setForm({
             ...form,
-            [e.taget.id]:e.taget.value,
+            [e.target.id]:e.target.value,
         });
     };
 
     const loadDropdowns = () => {
         fetch("http://localhost:5000/api/departments")
         .then((r)=>r.json())
-        .then((data)=> setDepartment(data));
+        .then((data)=> setDepartments(data));
 
         fetch("http://localhost:5000/api/positions")
         .then((r)=>r.json())
-        .then((data)=> setPosition(data));
+        .then((data)=> setPositions(data));
     };
 
     const handleSubmit = (e) => {
-        e.prevenDefault();
-        fetch("http://localhost:500/api/employees",{
+        e.preventDefault();
+        fetch("http://localhost:5000/api/employees",{
             method: "POST",
-            headers : {"Conten-Type:":"applocation/json"},
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(form),
         })
         .then((r)=>r.json())
         .then((res)=>{
             alert(res.msg);
-            if(res.Status === "success"){
+            if(res.status === "success"){
                 nav("/")
             }
         });
@@ -93,7 +93,7 @@ export default function EmployeeAdd(){
                 <label>Phone Number</label>
                 <input
                     id="PhoneNumber"
-                    className="form-control mb2"
+                    className="form-control mb-2"
                     value={form.PhoneNumber}
                     onChange={handleChange}
                     required
@@ -102,7 +102,7 @@ export default function EmployeeAdd(){
                 <label>Email</label>
                 <input
                     id="Email"
-                    className="form-control mb2"
+                    className="form-control mb-2"
                     value={form.Email}
                     onChange={handleChange}
                     required
@@ -112,8 +112,8 @@ export default function EmployeeAdd(){
                 <input
                     type="date"
                     id="HireDate"
-                    className="form-control mb2"
-                    value={form.Hire}
+                    className="form-control mb-2"
+                    value={form.HireDate}
                     onChange={handleChange}
                     required
                 />
