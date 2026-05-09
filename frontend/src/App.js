@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Layout from "./components/Layout";
 
@@ -19,32 +19,45 @@ import Positions from "./pages/Positions";
 
 import Dashboard from "./pages/Dashboard";
 import Alerts from "./pages/Alerts";
-
 import Reports from "./pages/Reports";
+import Login from "./pages/Login";
+
 function App() {
   return (
     <BrowserRouter>
-      <Layout>
-        <Routes>
-          <Route path="/alerts" element={<Alerts />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/" element={<Employees />} />
-          <Route path="/employees/add" element={<EmployeeAdd />} />
-          <Route path="/employees/:id" element={<EmployeeEdit />} />
+      <Routes>
+        <Route path="/login" element={<Login />} />
 
-          <Route path="/attendance" element={<Attendance />} />
-          <Route path="/attendance/add" element={<AttendanceAdd />} />
-          <Route path="/attendance/:id" element={<AttendanceEdit />} />
+        <Route
+          path="/*"
+          element={
+            <Layout>
+              <Routes>
+                <Route path="/" element={<Navigate to="/login" />} />
 
-          <Route path="/salaries" element={<Salaries />} />
-          <Route path="/salaries/add" element={<SalaryAdd />} />
-          <Route path="/salaries/:id" element={<SalaryEdit />} />
+                <Route path="/alerts" element={<Alerts />} />
+                <Route path="/dashboard" element={<Dashboard />} />
 
-          <Route path="/departments" element={<Departments />} />
-          <Route path="/positions" element={<Positions />} />
-          <Route path="/reports" element={<Reports />} />
-        </Routes>
-      </Layout>
+                <Route path="/employees" element={<Employees />} />
+                <Route path="/employees/add" element={<EmployeeAdd />} />
+                <Route path="/employees/:id" element={<EmployeeEdit />} />
+
+                <Route path="/attendance" element={<Attendance />} />
+                <Route path="/attendance/add" element={<AttendanceAdd />} />
+                <Route path="/attendance/:id" element={<AttendanceEdit />} />
+
+                <Route path="/salaries" element={<Salaries />} />
+                <Route path="/salaries/add" element={<SalaryAdd />} />
+                <Route path="/salaries/:id" element={<SalaryEdit />} />
+
+                <Route path="/departments" element={<Departments />} />
+                <Route path="/positions" element={<Positions />} />
+                <Route path="/reports" element={<Reports />} />
+              </Routes>
+            </Layout>
+          }
+        />
+      </Routes>
     </BrowserRouter>
   );
 }

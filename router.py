@@ -1,4 +1,5 @@
 from flask import Blueprint,jsonify,request
+from flask import Flask, request, jsonify
 from config import get_sqlsever_connection,get_mysql_connection
 
 router = Blueprint("router",__name__)
@@ -963,3 +964,21 @@ def report_attendance():
     """)
 
     return jsonify(cur.fetchall())
+
+@router.route("/api/login", methods=["POST"])
+def login():
+    data = request.get_json()
+
+    username = data.get("username")
+    password = data.get("password")
+
+    if username == "admin" and password == "123456":
+        return jsonify({
+            "success": True,
+            "username": "admin"
+        })
+
+    return jsonify({
+        "success": False,
+        "message": "Sai tài khoản hoặc mật khẩu"
+    }), 401

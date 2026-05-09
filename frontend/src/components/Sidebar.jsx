@@ -4,7 +4,7 @@ export default function Sidebar() {
   return (
     <div className="bg-light border-end" style={{ width: "220px", height: "100vh" }}>
       <div className="list-group list-group-flush">
-        <Link to="/" className="list-group-item list-group-item-action">
+        <Link to="/employees" className="list-group-item list-group-item-action">
           Employees
         </Link>
 
@@ -21,7 +21,7 @@ export default function Sidebar() {
         </Link>
 
         <Link to="/salaries" className="list-group-item list-group-item-action">
-          Salaries2
+          Salaries
         </Link>
 
         <Link to="/salaries/add" className="list-group-item list-group-item-action">

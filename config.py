@@ -4,10 +4,11 @@ import mysql.connector
 def get_sqlsever_connection():
     try:
         conn = pyodbc.connect(
-            "DRIVER={ODBC Driver 17 for SQL Server};"
-            "SERVER=localhost\\MSSQLSERVER01;"
+            "DRIVER={ODBC Driver 18 for SQL Server};"
+            "SERVER=localhost;"
             "DATABASE=HUMAN_2025;"
-            "Trusted_Connection=yes;",
+            "Trusted_Connection=yes;"
+            "TrustServerCertificate=yes;",
             timeout=5   
         )
         return conn

@@ -1,7 +1,20 @@
+import { useEffect } from "react";
+
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 
 export default function Layout({ children }) {
+
+  useEffect(() => {
+
+    const isLogin = localStorage.getItem("isLogin");
+
+    if (!isLogin) {
+      window.location.href = "/login";
+    }
+
+  }, []);
+
   return (
     <div>
       <Header />
